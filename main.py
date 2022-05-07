@@ -7,6 +7,7 @@ import pandas as pd
 import os
 import random
 import zipfile36 as zipfile
+import shutil
 
 
 # function for cut image
@@ -159,7 +160,7 @@ def main():
                     with open('ImageExport.zip', 'rb') as f:
                         st.download_button('Download Zip', f, file_name='ImageExport.zip')
             if st.button('clear file'):
-                os.remove(directory)
+                shutil.rmtree(directory)
                 if os.path.exists('ImageExport.zip') == True:
                     os.remove('ImageExport.zip')
 

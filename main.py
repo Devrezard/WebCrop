@@ -158,6 +158,11 @@ def main():
                 if os.path.exists('ImageExport.zip') == True:
                     with open('ImageExport.zip', 'rb') as f:
                         st.download_button('Download Zip', f, file_name='ImageExport.zip')
+            if st.button('clear file'):
+                os.remove(directory)
+                if os.path.exists('ImageExport.zip') == True:
+                    os.remove('ImageExport.zip')
+
         else:
             st.error('you cannot export . file not generated')
 

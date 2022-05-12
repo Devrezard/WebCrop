@@ -80,9 +80,10 @@ def main():
                 crop_top = st.slider('top',min_value=0,max_value=h,value=350)
                 crop_right = st.slider('right',min_value=0, max_value=w,value=645)
                 crop_bottom = st.slider('bottom',min_value=0,max_value=h,value=1988)
-                NewImage = image.crop((crop_left,crop_top,crop_right,crop_bottom))
-                st.write(NewImage.size)
-                if (NewImage.size[0] > 0 and NewImage.size[1] > 0):
+                if (crop_left < crop_right and crop_bottom > crop_top):
+                    NewImage = image.crop((crop_left,crop_top,crop_right,crop_bottom))
+                    st.write(NewImage.size)
+
                     if NewImage.size[0] < image.size[0] and NewImage.size[1] < image.size[1]:
                         st.info("Resolution acceptable")
                         sub = image_crop(NewImage)
@@ -107,9 +108,10 @@ def main():
                 crop_top = st.slider('top',min_value=0,max_value=h,value=350)
                 crop_right = st.slider('right',min_value=0, max_value=w,value=1410)
                 crop_bottom = st.slider('bottom',min_value=0,max_value=h,value=1984)
-                NewImage = image.crop((crop_left,crop_top,crop_right,crop_bottom))
-                st.write(NewImage.size)
-                if (NewImage.size[0] > 0 and NewImage.size[1] > 0):
+                if (crop_right > crop_left and crop_bottom > crop_top):
+                    NewImage = image.crop((crop_left,crop_top,crop_right,crop_bottom))
+                    st.write(NewImage.size)
+
                     if NewImage.size[0] < image.size[0] and NewImage.size[1] < image.size[1]:
                         st.info("Resolution acceptable")
                         sub = image_crop(NewImage)
@@ -133,8 +135,9 @@ def main():
     
     # columns for visualized adjusted image
     with colimage:
-        if file != None:
-            st.image(NewImage)
+        if file != None: 
+            if crop_left < crop_right and crop_top < crop_bottom :
+                st.image(NewImage)
 
 
     # columns for visualized one random image crop

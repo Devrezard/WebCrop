@@ -82,8 +82,8 @@ def main():
                 crop_bottom = st.slider('bottom',min_value=0,max_value=h,value=1988)
                 NewImage = image.crop((crop_left,crop_top,crop_right,crop_bottom))
                 st.write(NewImage.size)
-                if (NewImage.size[0] > 215 and NewImage.size[1] > 1600):
-                    if NewImage.size[0] < 400 and NewImage.size[1] < 1680:
+                if (NewImage.size[0] > 0 and NewImage.size[1] > 0):
+                    if NewImage.size[0] < image.size[0] and NewImage.size[1] < image.size[1]:
                         st.info("Resolution acceptable")
                         sub = image_crop(NewImage)
                         if filexlsx != None:
@@ -109,8 +109,8 @@ def main():
                 crop_bottom = st.slider('bottom',min_value=0,max_value=h,value=1984)
                 NewImage = image.crop((crop_left,crop_top,crop_right,crop_bottom))
                 st.write(NewImage.size)
-                if (NewImage.size[0] > 215 and NewImage.size[1] > 1600):
-                    if NewImage.size[0] < 400 and NewImage.size[1] < 1680:
+                if (NewImage.size[0] > 0 and NewImage.size[1] > 0):
+                    if NewImage.size[0] < image.size[0] and NewImage.size[1] < image.size[1]:
                         st.info("Resolution acceptable")
                         sub = image_crop(NewImage)
                         if filexlsx != None:

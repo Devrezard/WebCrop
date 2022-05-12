@@ -66,9 +66,11 @@ def main():
 
     # section to apply cropping image and save...
     with colparametre:
-        nom_calque = st.text_input('Layer name:',placeholder="date_Gxx")
-        file = st.file_uploader("Import image :",type=['png','jpg'])
-        filexlsx = st.file_uploader('Import excel file :',type='xlsx')
+        with st.expander('Parameters',expanded=True):
+            nom_calque = st.text_input('Layer name:',placeholder="date_Gxx")
+            file = st.file_uploader("Import image :",type=['png','jpg'])
+            subdivised = st.number_input('Subdivision number',step=1,min_value=8,max_value=50)
+            filexlsx = st.file_uploader('Import excel file :',type='xlsx')
         sub=[]
         
         if file != None:
@@ -86,7 +88,7 @@ def main():
 
                     if NewImage.size[0] < image.size[0] and NewImage.size[1] < image.size[1]:
                         st.info("Resolution acceptable")
-                        sub = image_crop(NewImage)
+                        sub = image_crop(NewImage,subdivised)
                         if filexlsx != None:
                             df = pd.read_excel(filexlsx)
                             if st.button('Save'):
@@ -114,7 +116,7 @@ def main():
 
                     if NewImage.size[0] < image.size[0] and NewImage.size[1] < image.size[1]:
                         st.info("Resolution acceptable")
-                        sub = image_crop(NewImage)
+                        sub = image_crop(NewImage,subdivised)
                         if filexlsx != None:
                             df = pd.read_excel(filexlsx)
                             if st.button('Save'):

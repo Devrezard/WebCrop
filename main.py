@@ -21,8 +21,8 @@ def image_crop(New_image,nbSubdivition : int = 36) -> list:
 
 # function for save all images
 def saveAllImage(numeroCalque : str,sub : list,resultat : list,imagePart : str) -> None:
-        listeNoConfirmed = ['FDC', 'AFD', 'AFJ', 'FC']
-        for element in ['AF', 'AFS', 'AFSC', 'AFC', 'FS', 'FSC', 'NC']:
+        listeNoConfirmed = ['FDC', 'AFD', 'AFJ']
+        for element in ['AF', 'AFS', 'AFSC', 'AFC', 'FS', 'FSC', 'NC', 'FC']:
             os.makedirs('./Dataexport/'+element+'/', exist_ok=True)
         for i in range(len(sub)):
             if element in listeNoConfirmed:
@@ -69,7 +69,7 @@ def main():
         with st.expander('Parameters',expanded=True):
             nom_calque = st.text_input('Layer name:',placeholder="date_Gxx")
             file = st.file_uploader("Import image :",type=['png','jpg'])
-            subdivised = st.number_input('Subdivision number',step=1,min_value=8,max_value=50)
+            subdivised = st.number_input('Subdivision number',step=1,min_value=8,max_value=36,value=36)
             filexlsx = st.file_uploader('Import excel file :',type='xlsx')
         sub=[]
         

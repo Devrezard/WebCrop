@@ -93,11 +93,9 @@ def main():
                             df = pd.read_excel(filexlsx)
                             if st.button('Save'):
                                 excel_left = df.iloc[:36,:]
-                                try:
-                                    saveAllImage(nom_calque,sub,excel_left['resultat'].to_list(),imagepart)
-                                    st.success("carry out")
-                                except:
-                                    st.warning('error')
+                                saveAllImage(nom_calque,sub,excel_left['resultat'].to_list(),imagepart)
+                                st.success("carry out")
+                                
 
 
                     else:

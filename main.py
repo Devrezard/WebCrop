@@ -56,6 +56,7 @@ def get_all_file_paths(directory):
 
 
 
+
 def main():
     st.set_page_config(
             page_title="Cropping",
@@ -92,9 +93,13 @@ def main():
                         if filexlsx != None:
                             df = pd.read_excel(filexlsx)
                             if st.button('Save'):
-                                excel_left = df.iloc[:36,:]
-                                saveAllImage(nom_calque,sub,excel_left['resultat'].to_list(),imagepart)
-                                st.success("carry out")
+                                excel_left = df.iloc[:36,-1]
+                                try:
+                                    saveAllImage(nom_calque,sub,excel_left.to_list(),imagepart)
+                                    st.success("carry out")
+                                except:
+                                    st.warning('error')
+
 
                     else:
                         st.warning("Adjusted the image")
@@ -116,10 +121,13 @@ def main():
                         if filexlsx != None:
                             df = pd.read_excel(filexlsx)
                             if st.button('Save'):
-                                excel_rigth = df.iloc[36:,:]
-                                saveAllImage(nom_calque,sub,excel_rigth['resultat'].to_list(),imagepart)
-                                st.success("carry out")
-                                
+                                excel_rigth = df.iloc[36:,-1]
+                                try:
+                                    saveAllImage(nom_calque,sub,excel_rigth.to_list(),imagepart)
+                                    st.success("carry out")
+                                except:
+                                    st.warning('error')
+
                     else:
                         st.warning("Adjusted the image")
                 else:

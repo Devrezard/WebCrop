@@ -33,9 +33,16 @@ def saveAllImage(numeroCalque : str,sub : list,resultat : list, idregistre : lis
                         './Dataexport/NC/'+numeroCalque+str(idregistre[i])+'.jpg')
             else:
                 if imagePart == 'left':
-                    sub[i].save('./Dataexport/'+resultat[i]+'/'+numeroCalque+str(idregistre[i])+'.jpg')
+                    if str(idregistre[i]) == 'Contrôle':
+                        sub[i].save('./Dataexport/'+resultat[i]+'/'+numeroCalque+str(i+1)+'l.jpg')
+                    else:
+                        sub[i].save('./Dataexport/'+resultat[i]+'/'+numeroCalque+str(idregistre[i])+'.jpg')
                 else:
-                    sub[i].transpose(Image.Transpose.FLIP_LEFT_RIGHT).save(
+                    if str(idregistre[i]) == 'Contrôle':
+                        sub[i].transpose(Image.Transpose.FLIP_LEFT_RIGHT).save(
+                        './Dataexport/'+resultat[i]+'/'+numeroCalque+str(i+1)+'r.jpg')
+                    else:
+                         sub[i].transpose(Image.Transpose.FLIP_LEFT_RIGHT).save(
                         './Dataexport/'+resultat[i]+'/'+numeroCalque+str(idregistre[i])+'.jpg')
 
 # function get root path and subdirectories

@@ -20,23 +20,23 @@ def image_crop(New_image,nbSubdivition : int = 36) -> list:
 
 
 # function for save all images
-def saveAllImage(numeroCalque : str,sub : list,resultat : list,imagePart : str) -> None:
+def saveAllImage(numeroCalque : str,sub : list,resultat : list, idregistre : list,imagePart : str) -> None:
         listeNoConfirmed = ['FDC', 'AFD', 'AFJ']
         for element in ['AF', 'AFS', 'AFSC', 'AFC', 'FS', 'FSC', 'NC', 'FC']:
             os.makedirs('./Dataexport/'+element+'/', exist_ok=True)
         for i in range(len(sub)):
             if resultat[i] in listeNoConfirmed:
                 if imagePart == 'left':
-                    sub[i].save('./Dataexport/NC/'+numeroCalque+str(i+1)+'l.jpg')
+                    sub[i].save('./Dataexport/NC/'+numeroCalque+str(idregistre[i])+'.jpg')
                 else:
                     sub[i].transpose(Image.Transpose.FLIP_LEFT_RIGHT).save(
-                        './Dataexport/NC/'+numeroCalque+str(i+1)+'r.jpg')
+                        './Dataexport/NC/'+numeroCalque+str(idregistre[i])+'.jpg')
             else:
                 if imagePart == 'left':
-                    sub[i].save('./Dataexport/'+resultat[i]+'/'+numeroCalque+str(i+1)+'l.jpg')
+                    sub[i].save('./Dataexport/'+resultat[i]+'/'+numeroCalque+str(idregistre[i])+'.jpg')
                 else:
                     sub[i].transpose(Image.Transpose.FLIP_LEFT_RIGHT).save(
-                        './Dataexport/'+resultat[i]+'/'+numeroCalque+str(i+1)+'r.jpg')
+                        './Dataexport/'+resultat[i]+'/'+numeroCalque+str(idregistre[i])+'.jpg')
 
 # function get root path and subdirectories
 def get_all_file_paths(directory):
@@ -94,8 +94,9 @@ def main():
                             df = pd.read_excel(filexlsx)
                             if st.button('Save'):
                                 excel_left = df.iloc[:36,-1]
+                                excel_left_id = df.iloc[:36,-3]
                                 try:
-                                    saveAllImage(nom_calque,sub,excel_left.to_list(),imagepart)
+                                    saveAllImage(nom_calque,sub,excel_left.to_list(),excel_left_id.to_list(),imagepart)
                                     st.success("carry out")
                                 except:
                                     st.warning('error')
@@ -122,8 +123,9 @@ def main():
                             df = pd.read_excel(filexlsx)
                             if st.button('Save'):
                                 excel_rigth = df.iloc[36:,-1]
+                                excel_rigth_id = df.iloc[36:,-3]
                                 try:
-                                    saveAllImage(nom_calque,sub,excel_rigth.to_list(),imagepart)
+                                    saveAllImage(nom_calque,sub,excel_rigth.to_list(),excel_rigth_id.to_list(),imagepart)
                                     st.success("carry out")
                                 except:
                                     st.warning('error')

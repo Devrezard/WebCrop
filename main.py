@@ -25,7 +25,7 @@ def saveAllImage(numeroCalque : str,sub : list,resultat : list,imagePart : str) 
         for element in ['AF', 'AFS', 'AFSC', 'AFC', 'FS', 'FSC', 'NC', 'FC']:
             os.makedirs('./Dataexport/'+element+'/', exist_ok=True)
         for i in range(len(sub)):
-            if element in listeNoConfirmed:
+            if resultat[i] in listeNoConfirmed:
                 if imagePart == 'left':
                     sub[i].save('./Dataexport/NC/'+numeroCalque+str(i+1)+'l.jpg')
                 else:

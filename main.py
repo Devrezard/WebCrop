@@ -21,7 +21,7 @@ def image_crop(New_image,nbSubdivition : int = 36) -> list:
 
 # function for save all images
 def saveAllImage(numeroCalque : str,sub : list,resultat : list, idregistre : list,imagePart : str) -> None:
-        listeNoConfirmed = ['FDC', 'AFD', 'AFJ']
+        listeNoConfirmed = ['FDC', 'AFD', 'AFJ','ASC','AX','ASA2X','AFX','AFA2','AFSX','FX','XC']
         for element in ['AF', 'AFS', 'AFSC', 'AFC', 'FS', 'FSC', 'NC', 'FC']:
             os.makedirs('./Dataexport/'+element+'/', exist_ok=True)
         for i in range(len(sub)):
